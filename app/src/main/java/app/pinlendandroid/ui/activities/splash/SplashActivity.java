@@ -40,7 +40,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
                 startActivity(i);
                 finish();
             }
-        }, 1500);
+        }, 15000);
     }
 
     @Override

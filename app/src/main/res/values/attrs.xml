@@ -216,4 +216,9 @@
         <attr name="duration" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="ImageViewFixSize">
+        <attr name="src" format="reference"/>
+        <attr name="is_change_size" format="boolean"/>
+    </declare-styleable>
+
 </resources>
