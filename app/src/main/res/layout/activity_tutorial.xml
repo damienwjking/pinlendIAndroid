@@ -1,0 +1,73 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onSkipClicked"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="onNextClicked"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="adapter"
+            type="app.pinlendandroid.adapters.TutorialAdapter"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.pinlendandroid.ui.activities.tutorial.TutorialActivity"
+        android:orientation="vertical">
+
+        <app.pinlendandroid.widgets.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:text="@string/skip"
+            android:clickable="true"
+            android:onClick="@{onSkipClicked}"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/text_color"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <app.pinlendandroid.widgets.CustomViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:initViewPager="@{adapter}"
+                app:swipeEnable="@{true}">
+
+            </app.pinlendandroid.widgets.CustomViewPager>
+
+            <app.pinlendandroid.widgets.ButtonPlus
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="25dp"
+                android:background="@drawable/bg_button"
+                android:text="@string/next"
+                android:textAllCaps="true"
+                android:onClick="@{onNextClicked}"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/white"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

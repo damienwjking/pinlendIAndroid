@@ -4,6 +4,7 @@ import app.pinlendandroid.app.bases.BaseFragment;
 import app.pinlendandroid.app.di.scopes.UserScope;
 import app.pinlendandroid.ui.fragments.home.HomeFragment;
 
+import app.pinlendandroid.ui.fragments.tutorial.TutorialFragment;
 import dagger.Component;
 
 /**
@@ -16,4 +17,6 @@ public interface FragmentComponent {
     void inject(BaseFragment fragment);
 
     void inject(HomeFragment fragment);
+
+    void inject(TutorialFragment fragment);
 }

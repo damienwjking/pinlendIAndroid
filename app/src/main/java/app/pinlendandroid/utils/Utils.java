@@ -426,6 +426,7 @@ public class Utils {
     }
 
     public static Drawable getDrawable(@NonNull int resId) {
+        if (resId == 0) return null;
         return App.getInstance().getResources().getDrawable(resId);
     }
 

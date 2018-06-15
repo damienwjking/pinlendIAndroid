@@ -8,6 +8,7 @@ import app.pinlendandroid.app.bases.BaseActivity;
 
 import app.pinlendandroid.R;
 import app.pinlendandroid.ui.activities.main.MainActivity;
+import app.pinlendandroid.ui.activities.tutorial.TutorialActivity;
 import app.pinlendandroid.widgets.ToolBarPlus;
 
 import javax.inject.Inject;
@@ -34,13 +35,21 @@ public class SplashActivity extends BaseActivity implements SplashView {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
-                finish();
+                if (presenter.isFirstInstallApp()) {
+                    Intent i = new Intent(SplashActivity.this, TutorialActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    finish();
+                }
             }
-        }, 15000);
+        }, 1500);
     }
 
     @Override

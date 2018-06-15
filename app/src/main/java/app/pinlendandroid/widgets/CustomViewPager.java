@@ -1,6 +1,7 @@
 package app.pinlendandroid.widgets;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -21,7 +22,12 @@ public class CustomViewPager extends ViewPager {
 
     // Call this method in your motion events when you want to disable or enable
     // It should work as desired.
-    public void setSwipEnable(boolean isSwipingEnabled) {
+    @BindingAdapter("swipeEnable")
+    public static void setSwipeEnable(CustomViewPager viewPager, boolean isSwipingEnabled) {
+        viewPager.setSwipeEnable(isSwipingEnabled);
+    }
+
+    public void setSwipeEnable(boolean isSwipingEnabled) {
         this.isSwipingEnabled = isSwipingEnabled;
     }
 

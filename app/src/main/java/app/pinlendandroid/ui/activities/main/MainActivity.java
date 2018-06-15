@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
         mMainAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), this);
         binding.viewpager.setAdapter(mMainAdapter);
-        binding.viewpager.setSwipEnable(false);
+        binding.viewpager.setSwipeEnable(false);
 //        binding.viewpager.addOnPageChangeListener(this);
         binding.viewpager.setOffscreenPageLimit(2);
 

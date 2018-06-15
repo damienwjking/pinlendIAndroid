@@ -5,6 +5,7 @@ import app.pinlendandroid.app.bases.BaseActivity;
 import app.pinlendandroid.app.di.scopes.UserScope;
 import app.pinlendandroid.ui.activities.splash.SplashActivity;
 
+import app.pinlendandroid.ui.activities.tutorial.TutorialActivity;
 import dagger.Component;
 
 /**
@@ -19,4 +20,6 @@ public interface ActivityComponent {
     void inject(SplashActivity activity);
 
     void inject(MainActivity activity);
+
+    void inject(TutorialActivity activity);
 }

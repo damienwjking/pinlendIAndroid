@@ -39,7 +39,6 @@ public class ButtonPlus extends Button {
     private int height = 0;
     private Handler handler;
     private int touchAction;
-    private ButtonPlus buttonPlus = this;
 
     public ButtonPlus(Context context) {
         super(context);

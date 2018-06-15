@@ -80,7 +80,7 @@ configurations.all {
     resolutionStrategy.force "com.android.support:support-annotations:27.+"
 }
 
-uploadArchives.enabled= false
+uploadArchives.enabled = false
 android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
@@ -135,4 +135,3 @@ android {
         exclude 'META-INF/rxjava.properties'
     }
 }
-
