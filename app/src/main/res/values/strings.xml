@@ -36,4 +36,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="fragment_tutorial_label">Tutorial</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragment_login_label">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragment_security_verification_label">SecurityVerification</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragment_enter_code_label">EnterCode</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragment_login2_label">Login</string>
 </resources>

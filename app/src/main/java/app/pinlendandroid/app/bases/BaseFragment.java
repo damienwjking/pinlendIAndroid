@@ -127,7 +127,6 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         toolBar = activity.getToolbar();
-        setToolBar();
         if (isFirst) {
             initVariable();
             initView();
@@ -138,6 +137,7 @@ public abstract class BaseFragment extends Fragment {
         } else {
             isFirst = false;
         }
+        setToolBar();
         if (activity != null) {
             if (!TextUtils.isEmpty(getFragmentLabel())) {
                 activity.setActiveTitle(getFragmentLabel());

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onNext"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="onLogin"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="25dp"
+        tools:context="app.pinlendandroid.ui.fragments.signUp.SignUpFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <app.pinlendandroid.widgets.ButtonPlus
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:text="Sign Up With Facebook"/>
+
+            <app.pinlendandroid.widgets.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:layout_gravity="center"
+                android:text="Or sign up with Email" />
+
+            <app.pinlendandroid.widgets.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Email"/>
+
+            <app.pinlendandroid.widgets.EditTextPlus
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:layout_marginTop="5dp"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:drawableRight="@mipmap/ic_visibility_grey_900_24dp"
+                android:padding="8dp"
+                android:hint="Email"/>
+
+            <app.pinlendandroid.widgets.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Password"/>
+
+            <app.pinlendandroid.widgets.EditTextPlus
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:layout_marginTop="5dp"
+                android:inputType="textPassword"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:padding="8dp"
+                android:hint="Password"/>
+
+            <app.pinlendandroid.widgets.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Confirm Password"/>
+
+            <app.pinlendandroid.widgets.EditTextPlus
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:layout_marginTop="5dp"
+                android:inputType="textPassword"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:drawableRight="@mipmap/ic_visibility_grey_900_24dp"
+                android:padding="8dp"
+                android:hint="Confirm Password"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp">
+
+            <app.pinlendandroid.widgets.ButtonPlus
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:textColor="@color/white"
+                android:onClick="@{onNext}"
+                android:layout_gravity="center"
+                android:text="Next"/>
+
+            <app.pinlendandroid.widgets.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:onClick="@{onLogin}"
+                android:text="Already have an account? Log in"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

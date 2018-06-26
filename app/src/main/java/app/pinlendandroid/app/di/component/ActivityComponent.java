@@ -1,5 +1,6 @@
 package app.pinlendandroid.app.di.component;
 
+import app.pinlendandroid.ui.activities.signUp.SignUpActivity;
 import app.pinlendandroid.ui.activities.main.MainActivity;
 import app.pinlendandroid.app.bases.BaseActivity;
 import app.pinlendandroid.app.di.scopes.UserScope;
@@ -22,4 +23,6 @@ public interface ActivityComponent {
     void inject(MainActivity activity);
 
     void inject(TutorialActivity activity);
+
+    void inject(SignUpActivity activity);
 }

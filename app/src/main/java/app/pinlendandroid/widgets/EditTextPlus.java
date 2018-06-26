@@ -10,7 +10,13 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -39,6 +45,13 @@ public class EditTextPlus extends EditText {
     private boolean hintTextAllCaps;
     private boolean isError = false;
 
+    private boolean isEditTextPassword = false;
+    private boolean isShowingPassword = false;
+    @DrawableRes
+    private int visibilityIndicatorShow;
+    @DrawableRes
+    private int visibilityIndicatorHide;
+
     public EditTextPlus(Context context) {
         super(context);
         init(context, null);
@@ -61,6 +74,38 @@ public class EditTextPlus extends EditText {
     }
 
     private void init(Context ctx, AttributeSet attrs) {
+
+        if (getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            isEditTextPassword = true;
+            visibilityIndicatorShow = R.mipmap.ic_visibility_grey_900_24dp;
+            visibilityIndicatorHide = R.mipmap.ic_visibility_off_grey_900_24dp;
+            isShowingPassword = false;
+            maskPassword();
+
+            if (!TextUtils.isEmpty(getText())) {
+                showPasswordVisibilityIndicator(true);
+            }
+
+            addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length() > 0) {
+                        showPasswordVisibilityIndicator(true);
+                    } else {
+                        showPasswordVisibilityIndicator(false);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+        }
+
         String font = null;
         measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         final int targetHeight = getMeasuredHeight();
@@ -181,6 +226,28 @@ public class EditTextPlus extends EditText {
         super.setCompoundDrawables(left, top, right, bottom);
     }
 
+    private void unmaskPassword() {
+        setTransformationMethod(null);
+    }
+
+    //hide it
+    private void maskPassword() {
+        setTransformationMethod(PasswordTransformationMethod.getInstance());
+    }
+
+    private void showPasswordVisibilityIndicator(boolean show) {
+        if (show) {
+            Drawable original = isShowingPassword ?
+                    ContextCompat.getDrawable(getContext(), visibilityIndicatorHide) :
+                    ContextCompat.getDrawable(getContext(), visibilityIndicatorShow);
+            original.mutate();
+
+            setDrawableRight(original);
+        } else {
+            setDrawableRight(null);
+        }
+    }
+
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
@@ -233,8 +300,7 @@ public class EditTextPlus extends EditText {
                 }
 
                 if (bounds.contains(x, y) && clickListener != null) {
-                    clickListener
-                            .onClick(DrawableClickListener.DrawablePosition.LEFT);
+                    clickListener.onClick(DrawableClickListener.DrawablePosition.LEFT);
                     event.setAction(MotionEvent.ACTION_CANCEL);
                     return false;
 
@@ -283,9 +349,11 @@ public class EditTextPlus extends EditText {
                     y = actionY;
 
                 /**If drawble bounds contains the x and y points then move ahead.*/
-                if (bounds.contains(x, y) && clickListener != null) {
-                    clickListener
-                            .onClick(DrawableClickListener.DrawablePosition.RIGHT);
+                if (bounds.contains(x, y)) {
+                    togglePasswordVisibility();
+                    if (clickListener != null) {
+                        clickListener.onClick(DrawableClickListener.DrawablePosition.RIGHT);
+                    }
                     event.setAction(MotionEvent.ACTION_CANCEL);
                     return false;
                 }
@@ -294,6 +362,26 @@ public class EditTextPlus extends EditText {
 
         }
         return super.onTouchEvent(event);
+    }
+
+    public void togglePasswordVisibility() {
+        // Store the selection
+        int selectionStart = this.getSelectionStart();
+        int selectionEnd = this.getSelectionEnd();
+
+        // Set transformation method to show/hide password
+        if (isShowingPassword) {
+            maskPassword();
+        } else {
+            unmaskPassword();
+        }
+
+        // Restore selection
+        this.setSelection(selectionStart, selectionEnd);
+
+        // Toggle flag and show indicator
+        isShowingPassword = !isShowingPassword;
+        showPasswordVisibilityIndicator(true);
     }
 
     public void setDrawableClickListener(DrawableClickListener listener) {
@@ -342,7 +430,9 @@ public class EditTextPlus extends EditText {
         } else {
 //            setTextColor(Color.WHITE);
         }
-        setDrawableRight(null);
+        if (!isEditTextPassword) {
+            setDrawableRight(null);
+        }
     }
 
     public void closeSoftKeyboard() {

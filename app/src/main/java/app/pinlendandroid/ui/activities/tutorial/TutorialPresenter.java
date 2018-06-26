@@ -53,7 +53,7 @@ public class TutorialPresenter extends BasePresenter<TutorialView> {
     }
 
     public void setOnSkipClicked() {
-
+        getMvpView().gotoLogin();
     }
 
     public void setOnNextClicked() {

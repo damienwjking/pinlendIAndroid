@@ -81,7 +81,7 @@ public class ToolBarPlus extends Toolbar {
             setShowClose(typedArray.getBoolean(R.styleable.ToolBarPlus_showClose, false));
             setTextTitle(typedArray.getString(R.styleable.ToolBarPlus_textTitle));
             setTextRightMenu(typedArray.getString(R.styleable.ToolBarPlus_textMenu));
-            setTextColorTitle(typedArray.getColor(R.styleable.ToolBarPlus_textColorTitle, Color.WHITE));
+            setTextColorTitle(typedArray.getColor(R.styleable.ToolBarPlus_textColorTitle, Color.BLACK));
             setTextColorRightMenu(typedArray.getColor(R.styleable.ToolBarPlus_textColorRightMenu, Utils.getColor(R.color.white)));
             setTextColorLeftMenu(typedArray.getColor(R.styleable.ToolBarPlus_textColorLeftMenu, Utils.getColor(R.color.white)));
             typedArray.recycle();
@@ -120,12 +120,12 @@ public class ToolBarPlus extends Toolbar {
         imgBack = new ImageView(ctx);
         LayoutParams paramsIcon = new LayoutParams(widthIcon, widthIcon);
 
-        Utils.loadImage(imgBack, R.drawable.ic_back_white);
+        Utils.loadImage(imgBack, R.drawable.ic_back_black);
         imgBack.setVisibility(GONE);
         lltLeft.addView(imgBack, paramsIcon);
 
         imgClose = new ImageView(ctx);
-        Utils.loadImage(imgClose, R.drawable.ic_close_white);
+        Utils.loadImage(imgClose, R.drawable.ic_close_black);
         imgClose.setVisibility(GONE);
         lltLeft.addView(imgClose, paramsIcon);
 
@@ -165,7 +165,7 @@ public class ToolBarPlus extends Toolbar {
 
         View view = new View(ctx);
         view.setBackgroundResource(R.drawable.shadow_bottom);
-//        llt.addView(view, new LayoutParams(-1, (int) Utils.dp2px(2, ctx)));
+        llt.addView(view, new LayoutParams(-1, (int) Utils.dp2px(2, ctx)));
 
 
         initEvent();

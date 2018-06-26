@@ -16,6 +16,7 @@ public class Constants {
     public abstract static class BUNDLEKEY {
         public static final String DRAWABLE_ID = "drawable_id";
         public static final String CONTENT_TUTORIAL = "content_tutorial";
+        public static final String EMAIL = "email";
     }
 
     public abstract static class CONFIG {

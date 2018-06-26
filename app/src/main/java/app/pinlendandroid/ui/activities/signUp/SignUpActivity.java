@@ -1,4 +1,4 @@
-package app.pinlendandroid.ui.activities.tutorial;
+package app.pinlendandroid.ui.activities.signUp;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,28 +6,31 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import app.pinlendandroid.adapters.TutorialAdapter;
 import app.pinlendandroid.app.bases.BaseActivity;
-import app.pinlendandroid.ui.activities.signUp.SignUpActivity;
 import app.pinlendandroid.widgets.ToolBarPlus;
 import app.pinlendandroid.utils.Utils;
 import app.pinlendandroid.R;
-import app.pinlendandroid.databinding.ActivityTutorialBinding;
+import app.pinlendandroid.databinding.ActivityLoginBinding;
 
 import javax.inject.Inject;
 
-public class TutorialActivity extends BaseActivity implements TutorialView {
+/**
+ * User: ntnhuy
+ * Date: 6/26/18
+ * Time: 1:24 PM
+ */
+
+public class SignUpActivity extends BaseActivity implements SignUpView {
 
 
     @Inject
-    public TutorialPresenter presenter;
-    ActivityTutorialBinding binding;
-    private TutorialAdapter adapter;
+    public SignUpPresenter presenter;
+    ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutorial);
+        setContentView(R.layout.activity_login);
     }
 
     @Override
@@ -49,33 +52,19 @@ public class TutorialActivity extends BaseActivity implements TutorialView {
     protected void initVariable() {
         View decorView = getWindow().getDecorView();
         ViewGroup contentView = (ViewGroup) decorView.findViewById(android.R.id.content);
-        binding = ActivityTutorialBinding.bind(contentView.getChildAt(0));
+        binding = ActivityLoginBinding.bind(contentView.getChildAt(0));
         getActivityComponent().inject(this);
         presenter.attachView(this);
-
-        adapter = new TutorialAdapter(getSupportFragmentManager(), presenter.getListTutorialFragments());
     }
 
     @Override
     protected void initView() {
-        binding.setAdapter(adapter);
+        presenter.initView();
     }
 
     @Override
     protected void initEvent() {
-        binding.setOnSkipClicked(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.setOnSkipClicked();
-            }
-        });
 
-        binding.setOnNextClicked(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.setOnNextClicked();
-            }
-        });
     }
 
     @Override
@@ -84,7 +73,7 @@ public class TutorialActivity extends BaseActivity implements TutorialView {
     }
 
     public ToolBarPlus getToolbar() {
-        return null;
+        return binding.toolBar;
     }
 
     @Override
@@ -105,19 +94,5 @@ public class TutorialActivity extends BaseActivity implements TutorialView {
     @Override
     public boolean hasTabBar() {
         return false;
-    }
-
-    @Override
-    public void onNextPage() {
-        presenter.onNextPage(binding.pager);
-    }
-
-    @Override
-    public void gotoLogin() {
-        Intent i = new Intent(this, SignUpActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
-        finish();
     }
 }

@@ -14,7 +14,11 @@ import app.pinlendandroid.R;
 import app.pinlendandroid.ui.activities.splash.SplashActivity;
 import app.pinlendandroid.datas.DataManager;
 import app.pinlendandroid.enums.FragmentEnums;
+import app.pinlendandroid.ui.fragments.enterCode.EnterCodeFragment;
 import app.pinlendandroid.ui.fragments.home.HomeFragment;
+import app.pinlendandroid.ui.fragments.login.LoginFragment;
+import app.pinlendandroid.ui.fragments.securityVerification.SecurityVerificationFragment;
+import app.pinlendandroid.ui.fragments.signUp.SignUpFragment;
 import app.pinlendandroid.utils.Utils;
 import app.pinlendandroid.widgets.SweetAlert.SweetAlertDialog;
 import app.pinlendandroid.listeners.OnDismissDialog;
@@ -76,6 +80,30 @@ public abstract class BasePresenter<T extends MvpView> implements Presenter<T> {
                 mainFragment = new HomeFragment();
                 mainFragment.setArguments(bundle);
                 name = HomeFragment.class.getSimpleName();
+                break;
+
+            case SIGN_UP:
+                mainFragment = new SignUpFragment();
+                mainFragment.setArguments(bundle);
+                name = SignUpFragment.class.getSimpleName();
+                break;
+
+            case SECURITY_VERIFICATION:
+                mainFragment = new SecurityVerificationFragment();
+                mainFragment.setArguments(bundle);
+                name = SecurityVerificationFragment.class.getSimpleName();
+                break;
+
+            case ENTER_CODE:
+                mainFragment = new EnterCodeFragment();
+                mainFragment.setArguments(bundle);
+                name = EnterCodeFragment.class.getSimpleName();
+                break;
+
+            case LOGIN:
+                mainFragment = new LoginFragment();
+                mainFragment.setArguments(bundle);
+                name = LoginFragment.class.getSimpleName();
                 break;
 
             default:

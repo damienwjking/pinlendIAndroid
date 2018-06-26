@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onSendViaTXT"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="onSendViaEmail"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="25dp"
+        android:orientation="vertical"
+        tools:context="app.pinlendandroid.ui.fragments.securityVerification.SecurityVerificationFragment">
+
+        <app.pinlendandroid.widgets.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="To ensure that your account is secure, we can send you a 6 digit pin.  This pin can be sent to an Australian phone number or to the email you entered." />
+
+        <app.pinlendandroid.widgets.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Mobile number"/>
+
+        <app.pinlendandroid.widgets.EditTextPlus
+            android:id="@+id/mobile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="5dp"
+            android:inputType="phone"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:padding="8dp"
+            android:hint="Mobile number"/>
+
+        <app.pinlendandroid.widgets.ButtonPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:onClick="@{onSendViaTXT}"
+            android:layout_gravity="center"
+            android:text="Send Via TXT"/>
+
+        <app.pinlendandroid.widgets.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Email"/>
+
+        <app.pinlendandroid.widgets.EditTextPlus
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="5dp"
+            android:inputType="phone"
+            android:cursorVisible="true"
+            android:enabled="false"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:padding="8dp"
+            android:hint="Email"/>
+
+        <app.pinlendandroid.widgets.ButtonPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:onClick="@{onSendViaEmail}"
+            android:layout_gravity="center"
+            android:text="Send Via Email"/>
+
+    </LinearLayout>
+
+</layout>
